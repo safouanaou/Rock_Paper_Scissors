@@ -1,15 +1,8 @@
+const choices = ['rock', 'paper', 'scissors']
+
 // create function to return computer choice
 
 function getComputerChoice(){
-    let computerChoice = ['rock', 'paper', 'scissors']
-    return computerChoice[Math.floor(Math.random()*computerChoice.length)]
+    return choices[Math.floor(Math.random()*choices.length)]
 }
-
-console.log(getComputerChoice())
-
-
-
-// create function that plays single round of RPS and returns a winner
-
-
 
