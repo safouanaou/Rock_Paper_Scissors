@@ -52,8 +52,6 @@ function rpsRound(playerSelection, computerSelection){
     
 }
 
-
-
 function game(){
     for (let i = 0; i < 5; i ++){
     const playerSelection = prompt('choose here').toLowerCase();
@@ -69,4 +67,6 @@ function game(){
     }
     
 }
-console.log(game())
+// console.log(game())
+
+
