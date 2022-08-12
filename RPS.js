@@ -1,8 +1,11 @@
-const choices = ['rock', 'paper', 'scissors']
+let compscore = 0;
+let palyerscore = 0;
+
 
 // create function to return computer choice
 
 function getComputerChoice(){
+    const choices = ['rock', 'paper', 'scissors']
     return choices[Math.floor(Math.random()*choices.length)]
 }
 
@@ -48,3 +51,22 @@ function rpsRound(playerSelection, computerSelection){
     }
     
 }
+
+
+
+function game(){
+    for (let i = 0; i < 5; i ++){
+    const playerSelection = prompt('choose here').toLowerCase();
+        const computerSelection = getComputerChoice();
+        rpsRound(playerSelection, computerSelection);
+    }
+    if(palyerscore > compscore){
+        return 'you won! good job'
+    } else if(palyerscore < compscore){
+        return 'you lost! better luck next time'
+    } else{
+        return 'it is a tie'
+    }
+    
+}
+console.log(game())
