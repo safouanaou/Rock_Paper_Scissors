@@ -1,86 +1,152 @@
- let compscore = 0;
- let palyerscore = 0;
-
-
-// // create function to return computer choice
-
+ // // create function to return computer choice
  function getComputerChoice(){
-     const choices = ['rock', 'paper', 'scissors']
-     return choices[Math.floor(Math.random()*choices.length)]
- }
+    const choices = ['rock', 'paper', 'scissors']
+    return choices[Math.floor(Math.random()*choices.length)]
+}
 
- const computerSelection = getComputerChoice();
+// game start
+function game(){
 
-// // create function that plays single round of rPS and returns a winner
-
- function rpsround(playerSelection, computerSelection){
-     // paper
-     if (playerSelection == 'rock' && computerSelection == 'paper'){
-         compscore++
-         return 'you lose! paper beats rock'
-     }
-     else if(playerSelection == 'paper' && computerSelection == 'paper'){
-         return 'it is a draw'
-     }
-     else if(playerSelection == 'scissors' && computerSelection == 'paper'){
-         palyerscore++
-         return 'you win! scissors beat paper'
-     }
-//     // rock
-     else if(playerSelection == 'rock' && computerSelection == 'rock'){
-         return 'it is a draw'
-     }
-     else if(playerSelection == 'paper' && computerSelection == 'rock'){
-         palyerscore++
-         return 'you win! paper beats rock'
-     }
-     else if(playerSelection == 'scissors' && computerSelection == 'rock'){
-         compscore++
-         return 'you lose! rock beats scissors'
-     }
-//     // scissors
-     else if(playerSelection == 'rock' && computerSelection == 'scissors'){
-         palyerscore++
-         return 'you win! rock beats scissors'
-     }
-     else if(playerSelection == 'paper' && computerSelection == 'scissors'){
-         compscore++
-         return 'you lose! scissors beat paper'
-     }
-     else if(playerSelection == 'scissors' && computerSelection == 'scissors'){
-         return 'it is a draw'
-     }
-    
- }
+    // declaring variables
+    let compscore = 0;
+    let playerscore = 0;
+    let gamewinner = '';
+    game
 
 
+     //  Add event listeners for all three buttons/run round on click/track and end game
+    const buttons = document.querySelectorAll('button');
+   
+    buttons.forEach((button)=>{
+        button.addEventListener('click', ()=>{
+            playerSelection = button.className;
+            const computerSelection = getComputerChoice();
+            rpsround(playerSelection, computerSelection);
+            playerWinText.textContent = 'player:  ' + playerscore;
+            computerWinText.textContent = 'computer:  ' + compscore;
+            // redeclared these vars below because here they are local vars
+            endGame();
+        })
+    })
 
-// // show value when clicking on button
- const buttons = document.querySelectorAll('button');
- const rock = document.querySelector('.rock')
- const paper = document.querySelector('.paper')
- const scissors = document.querySelector('.scissors')
+    // // create function that plays single round of rPS and returns a winner
+    function rpsround(playerSelection, computerSelection){
+        // paper
+        if (playerSelection == 'rock' && computerSelection == 'paper'){
+            compscore++
+            return compscore
+        }
+        else if(playerSelection == 'paper' && computerSelection == 'paper'){
+            return;
+        }
+        else if(playerSelection == 'scissors' && computerSelection == 'paper'){
+            palyerscore++
+            return playerscore
+        }
+   //     // rock
+        else if(playerSelection == 'rock' && computerSelection == 'rock'){
+            return
+        }
+        else if(playerSelection == 'paper' && computerSelection == 'rock'){
+            playerscore++
+            return playerscore
+        }
+        else if(playerSelection == 'scissors' && computerSelection == 'rock'){
+            compscore++
+            return compscore
+        }
+   //     // scissors
+        else if(playerSelection == 'rock' && computerSelection == 'scissors'){
+            playerscore++
+            return palyerscore
+        }
+        else if(playerSelection == 'paper' && computerSelection == 'scissors'){
+            compscore++
+            return compscore
+        }
+        else if(playerSelection == 'scissors' && computerSelection == 'scissors'){
+            return 
+        }
+       
+    }
 
 
 
+    // create div DOM for all results
+    const container = document.querySelector('.container');
+    const resultsDiv = document.createElement('div');
+    resultsDiv.className = 'results'
+    resultsDiv.style.marginTop = '20px';
+    container.appendChild(resultsDiv);
+
+    // create player win tracking dom
+    const playerWinText = document.createElement('p');
+    playerWinText.className = 'player'
+    playerWinText.textContent = 'player:  ' + playerscore;
+    resultsDiv.appendChild(playerWinText);
+
+    // create computer win tracking dom
+    const computerWinText = document.createElement('p');
+    computerWinText.className = 'computer'
+    computerWinText.textContent = 'computer:  ' + compscore;
+    resultsDiv.appendChild(computerWinText);
 
 
- 
-  function game(){
-      for (let i = 0; i < 5; i ++){
-      const playerSelection = prompt('whats your choice') ;
-      const computerSelection = getComputerChoice();
-      rpsround(playerSelection, computerSelection);
-      }
-      if(palyerscore > compscore){
-          return 'you won! good job'
-      } else if(palyerscore < compscore){
-          return 'you lost! better luck next time'
-      } else{
-          return 'it is a tie'
-      }
-    
-  }
+    //  create game win text DOM
+    const gameWinText = document.createElement('p');
+    gameWinText.className = 'winner'
+    gameWinText.textContent = gamewinner;
+    resultsDiv.appendChild(gameWinText);
 
-  
+
+    //  determine who won to five points first
+    function endGame(){
+        if(playerscore == 5){
+            gamewinner = 'YOU WIN!';
+            gameWinText.textContent = gamewinner;
+
+      //  disable game buttons
+      document.getElementById('1').disabled = true;
+      document.getElementById('2').disabled = true;
+      document.getElementById('3').disabled = true;
+
+    //  create new DOM button to replay
+    const playAgainButton = document.createElement('button');
+    playAgainButton.textContent = 'Play Again!';
+    resultsDiv.appendChild(playAgainButton);
+    playAgainButton.className = 'playagain';
+
+     //  if clicked, reload page
+    playAgainButton.addEventListener('click', ()=>{
+        location.reload();
+    })
+        }else if (compscore == 5){
+            gamewinner = 'COMPUTER WINS!';
+            gameWinText.textContent = gamewinner;
+
+    //  disable game buttons
+    document.getElementById('1').disabled = true;
+    document.getElementById('2').disabled = true;
+    document.getElementById('3').disabled = true;
+
+    const playAgainButton = document.createElement('button');
+    playAgainButton.textContent = 'Play Again!';
+    resultsDiv.appendChild(playAgainButton);
+    playAgainButton.className = 'playagain';
+
+    playAgainButton.addEventListener('click', ()=>{
+        location.reload();
+        })
+
+
+    }
+   
+}
+
+
+
+}
+game();
+
+
 

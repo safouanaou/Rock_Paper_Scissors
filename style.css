@@ -1,0 +1,118 @@
+.container{
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    width: 450px;
+    height: 80vh;
+    background-color: #01303f;
+    border-radius: 20px;
+}
+
+.rock{
+    height: 40px;
+    width: 100px;
+    margin-top: 20px;
+    font-weight: 800;
+    border-style: none;
+    border-color: none;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 10px;
+    transition: all 0.09s ease-in-out;
+
+}
+
+.paper{
+    height: 40px;
+    width: 100px;
+    margin-top: 20px;
+    font-weight: 800;
+    border-style: none;
+    border-color: none;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 10px;
+    transition: all 0.09s ease-in-out;
+}
+
+.scissors{
+    height: 40px;
+    width: 100px;
+    margin-top: 20px;
+    font-weight: 800;
+    border-style: none;
+    border-color: none;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 10px;
+    transition: all 0.09s ease-in-out;
+}
+
+button:hover{
+    transform: scale(1.1);
+}
+
+.results{
+    
+    width: 90%;
+    height: 67%;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 150px 200px;
+    grid-auto-rows: minmax(150px, auto);
+    background-color: 	#d4f0fc;
+    position: absolute;
+    top: 60px;
+    justify-content: center;
+    grid-gap: 10px;
+    padding-top: 50px;
+    
+}
+
+.player{
+    align-self: center;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #01303f;
+    border-radius: 20px;
+    padding: 80px 0px;
+}
+
+.computer{
+    align-self: center;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #01303f;
+    border-radius: 20px;
+    padding: 80px 10px;
+}
+
+.winner{
+    font-size: 1.3rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #01303f;
+    border-radius: 20px;
+    padding: 40px 335px 40px 19px;
+}
+
+.playagain{
+    font-weight: 800;
+    position: relative;   
+    height: 70px;
+    width: 80px;
+    border-radius: 10px;
+    border-style: none;
+    top: 48px;
+    right: -101px;
+}
